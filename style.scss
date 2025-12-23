@@ -1,4 +1,4 @@
-// Import Aoenik Typeface
+// Import Aoenik typeface
 @font-face {
   font-family: "Aeonik";
   src: url("./assets/fonts/aeonik/aeonik-regular.woff2") format("woff2"),
@@ -15,7 +15,7 @@
   font-style: normal;
 }
 
-// Import Segoe Print Typeface
+// Import Segoe Print typeface
 @font-face {
   font-family: "Segoe Print";
   src: url("./assets/fonts/segoe-print/segoe-print-regular.woff2")
@@ -32,3 +32,13 @@
   font-weight: bold;
   font-style: normal;
 }
+
+// Variables for colors and fonts
+// Colors
+$primary-color: #7458ed;
+$secondary-color: #16131d;
+$text-color: #ffffff;
+
+// Fonts
+$primary-font: "Aeonik", sans-serif;
+$accent-font: "Segoe Print", cursive;
