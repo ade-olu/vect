@@ -24,9 +24,10 @@
 }
 body {
   font-family: "Aeonik", sans-serif;
-  font-size: 1rem;
+  font-size: 1.125rem;
   background-color: #16131d;
   color: #ffffff;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -40,7 +41,7 @@ body {
 }
 
 .logo img {
-  width: 6rem;
+  width: 7rem;
   height: auto;
 }
 

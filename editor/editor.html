@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style/css/editor.min.css" />
+    <!-- JS -->
+    <script src="editor.js" defer></script>
+    <title>Vect - Editor</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="/" class="logo"
+        ><img src="/assets/logo.svg" alt="Vect Logo"
+      /></a>
+    </nav>
+
+    <!-- Editor container -->
+    <main class="editor-container">
+      <!-- Left toolbar -->
+      <aside class="toolbar left-toolbar">
+        <div class="left-toolbar-1">
+          <!-- Pencil tool -->
+          <div class="tool pencil-tool" id="pencilTool" title="Pencil">
+            <img src="../editor/assets/icons/pencil.svg" alt="Pencil" />
+          </div>
+          <!-- Brush tool -->
+          <div class="tool brush-tool" id="brushTool" title="Brush">
+            <img src="../editor/assets/icons/brush.svg" alt="Brush" />
+          </div>
+          <!-- Marker tool -->
+          <div class="tool marker-tool" id="markerTool" title="Marker">
+            <img src="../editor/assets/icons/marker.svg" alt="Marker" />
+          </div>
+          <!-- Airbrush tool -->
+          <div class="tool airbrush-tool" id="airbrushTool" title="Airbrush">
+            <img src="../editor/assets/icons/airbrush.svg" alt="Airbrush" />
+          </div>
+          <!-- Eraser tool -->
+          <div class="tool eraser-tool" id="eraserTool" title="Eraser">
+            <img src="../editor/assets/icons/eraser.svg" alt="Eraser" />
+          </div>
+        </div>
+        <div class="left-toolbar-2">
+          <!-- Shapes tool -->
+          <div class="tool shapes-tool" id="shapesTool" title="Shapes">
+            <div class="shapes-icon"></div>
+          </div>
+          <!-- Color picker tool -->
+          <div
+            class="tool color-picker-tool"
+            id="colorPickerTool"
+            title="Color"
+          >
+            <div class="color-picker-icon">
+              <div
+                class="color-picker-indicator"
+                id="colorPickerIndicator"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Canvas -->
+      <section class="canvas-container">
+        <canvas class="editor-canvas" id="editorCanvas"></canvas>
+      </section>
+
+      <!-- Right toolbar -->
+      <aside class="toolbar right-toolbar">
+        <div class="right-toolbar-1">
+          <!-- Stroke size tool -->
+          <div
+            class="tool stroke-size-tool"
+            id="strokeSizeTool"
+            title="Stroke Size"
+          >
+            <img
+              src="../editor/assets/icons/stroke-size.svg"
+              alt="Stroke Size"
+            />
+          </div>
+          <!-- Opacity tool -->
+          <div class="tool opacity-tool" id="opacityTool" title="Opacity">
+            <img src="../editor/assets/icons/opacity.svg" alt="Opacity" />
+          </div>
+        </div>
+        <div class="right-toolbar-2">
+          <!-- Undo tool -->
+          <div class="tool undo-tool" id="undoTool" title="Undo">
+            <img src="../editor/assets/icons/undo.svg" alt="Undo" />
+          </div>
+          <!-- Redo tool -->
+          <div class="tool redo-tool" id="redoTool" title="Redo">
+            <img src="../editor/assets/icons/redo.svg" alt="Redo" />
+          </div>
+          <!-- Clear tool -->
+          <div class="tool clear-tool" id="clearTool" title="Clear Canvas">
+            <img src="../editor/assets/icons/clear.svg" alt="Clear" />
+          </div>
+          <!-- Save tool -->
+          <div class="tool save-tool" id="saveTool" title="Save Drawing">
+            <img src="../editor/assets/icons/save.svg" alt="Save" />
+          </div>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>

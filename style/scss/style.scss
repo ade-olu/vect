@@ -48,9 +48,10 @@ $accent-font: "Segoe Print", cursive;
 // Body
 body {
   font-family: $primary-font;
-  font-size: 1rem;
+  font-size: 1.125rem;
   background-color: $secondary-color;
   color: $text-color;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -66,7 +67,7 @@ body {
 
 // Logo
 .logo img {
-  width: 6rem;
+  width: 7rem;
   height: auto;
 }
 

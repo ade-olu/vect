@@ -1,0 +1,195 @@
+// Import Aoenik typeface
+@font-face {
+  font-family: "Aeonik", sans-serif;
+  src: url("../../assets/fonts/aeonik/aeonik-regular.woff2") format("woff2"),
+    url("../../assets/fonts/aeonik/aeonik-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aeonik", sans-serif;
+  src: url("../../assets/fonts/aeonik/aeonik-bold.woff2") format("woff2"),
+    url("../../assets/fonts/aeonik/aeonik-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Import Segoe Print typeface
+@font-face {
+  font-family: "Segoe Print", cursive;
+  src: url("../../assets/fonts/segoe-print/segoe-print-regular.woff2")
+      format("woff2"),
+    url("../../assets/fonts/segoe-print/segoe-print-regular.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Segoe Print", cursive;
+  src: url("../../assets/fonts/segoe-print/segoe-print-bold.woff2")
+      format("woff2"),
+    url("../../assets/fonts/segoe-print/segoe-print-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Variables for colors and fonts
+// Colors
+$primary-color: #7458ed;
+$secondary-color: #16131d;
+$secondary-color-2: #1f1b2a;
+$text-color: #ffffff;
+
+// Fonts
+$primary-font: "Aeonik", sans-serif;
+$accent-font: "Segoe Print", cursive;
+
+// Body
+body {
+  font-family: $primary-font;
+  font-size: 1.125rem;
+  background-color: $secondary-color;
+  color: $text-color;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// Navbar
+.navbar {
+  background-color: $secondary-color;
+  padding: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Logo
+.logo img {
+  width: 7rem;
+  height: auto;
+}
+
+// Editor container
+.editor-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.5rem;
+  padding-bottom: 5.5rem;
+}
+
+// Toolbar
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+// Left and right toolbars
+.left-toolbar-1,
+.left-toolbar-2,
+.right-toolbar-1,
+.right-toolbar-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: $secondary-color-2;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.tool {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: $secondary-color;
+  border: none;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  img {
+    width: auto;
+    height: 1.5rem;
+    margin-left: -1rem;
+  }
+
+  &:hover {
+    background-color: $primary-color;
+  }
+}
+
+// Shapes icon
+.shapes-icon {
+  width: 2rem;
+  height: 2rem;
+  box-sizing: border-box;
+  border: 0.25rem solid $text-color;
+  border-radius: 0.125rem;
+}
+
+// Color picker icon
+.color-picker-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    #3084d1 5%,
+    #b01fe2 25%,
+    #e77d41 55%,
+    #addf48 85%
+  );
+}
+
+.color-picker-indicator {
+  width: 1.5rem;
+  height: 1.5rem;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 0.25rem solid $secondary-color;
+  background-color: $primary-color;
+}
+
+// Specific styles for right toolbars
+.left-toolbar-2,
+.right-toolbar-1,
+.right-toolbar-2 {
+  .tool img {
+    width: auto;
+    height: 2rem;
+    margin-left: 0;
+  }
+}
+
+// Canvas
+.canvas-container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+.editor-canvas {
+  width: 100%;
+  height: 100vh;
+  background-color: $text-color;
+}
