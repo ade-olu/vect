@@ -3,11 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- SCSS -->
-    <link rel="stylesheet" href="style.scss" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="style/css/style.min.css" />
     <!-- JS -->
     <script src="script.js" defer></script>
     <title>Vect</title>
   </head>
-  <body></body>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="/" class="logo"
+        ><img src="/assets/logo.svg" alt="Vect Logo"
+      /></a>
+      <ul class="nav-links">
+        <li class="about"><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main content -->
+    <main class="main-content">
+      <!-- Header section -->
+      <section class="header-section">
+        <!-- Header -->
+        <header class="main-header-container">
+          <h1 class="main-header">
+            A creative tool for
+            <span class="cursive-text" id="cursiveText">everyone</span>
+          </h1>
+        </header>
+        <!-- Subtext -->
+        <p class="subtext">
+          A simple drawing tool for sketching ideas, diagrams, and creative
+          thoughts.
+        </p>
+        <!-- Start Drawing button -->
+        <a
+          href="/editor/editor.html"
+          class="start-drawing-btn"
+          id="startDrawingBtn"
+          >Start Drawing</a
+        >
+      </section>
+
+      <!-- Image section -->
+      <section class="image-section">
+        <img
+          src="/assets/ipad-with-drawing.svg"
+          alt="iPad with drawing"
+          class="ipad-image"
+        />
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; <span id="currentYear"></span> Vect</p>
+      <!-- Socials -->
+      <div class="socials">
+        <!-- Github -->
+        <a href="https://github.com/ade-olu" target="_blank">Github</a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/tobiloba-adegbaju/" target="_blank"
+          >LinkedIn</a
+        >
+      </div>
+    </footer>
+  </body>
 </html>

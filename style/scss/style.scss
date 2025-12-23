@@ -1,0 +1,155 @@
+// Import Aoenik typeface
+@font-face {
+  font-family: "Aeonik", sans-serif;
+  src: url("./assets/fonts/aeonik/aeonik-regular.woff2") format("woff2"),
+    url("./assets/fonts/aeonik/aeonik-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aeonik", sans-serif;
+  src: url("./assets/fonts/aeonik/aeonik-bold.woff2") format("woff2"),
+    url("./assets/fonts/aeonik/aeonik-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Import Segoe Print typeface
+@font-face {
+  font-family: "Segoe Print", cursive;
+  src: url("./assets/fonts/segoe-print/segoe-print-regular.woff2")
+      format("woff2"),
+    url("./assets/fonts/segoe-print/segoe-print-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Segoe Print", cursive;
+  src: url("./assets/fonts/segoe-print/segoe-print-bold.woff2") format("woff2"),
+    url("./assets/fonts/segoe-print/segoe-print-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Variables for colors and fonts
+// Colors
+$primary-color: #7458ed;
+$secondary-color: #16131d;
+$text-color: #ffffff;
+
+// Fonts
+$primary-font: "Aeonik", sans-serif;
+$accent-font: "Segoe Print", cursive;
+
+// Body
+body {
+  font-family: $primary-font;
+  font-size: 1rem;
+  background-color: $secondary-color;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+}
+
+// Navbar
+.navbar {
+  background-color: $secondary-color;
+  padding: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Logo
+.logo img {
+  width: 6rem;
+  height: auto;
+}
+
+// Nav links
+.about {
+  list-style-type: none;
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+  }
+}
+
+// Main content
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 2.5rem;
+  padding-bottom: 5.5rem;
+}
+
+// Header
+.main-header-container {
+  // width: 50rem; Use this width for bigger screens
+  word-wrap: break-word;
+}
+
+.main-header {
+  font-size: 4rem;
+  line-height: 5rem;
+  margin-top: 0rem;
+  margin-bottom: 2.5rem;
+}
+
+.cursive-text {
+  font-family: $accent-font;
+  font-weight: bold;
+  color: $primary-color;
+}
+
+// Subtext
+.subtext {
+  margin-bottom: 2.5rem;
+}
+
+// Start Drawing button
+.start-drawing-btn {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background-color: $primary-color;
+  color: $text-color;
+  text-decoration: none;
+  border-radius: 50rem;
+  font-weight: bold;
+}
+
+// Image section
+.image-section {
+  margin-top: 4rem;
+}
+
+.ipad-image {
+  width: 100%;
+  max-width: 64rem;
+  height: auto;
+}
+
+// Footer
+.footer {
+  display: flex;
+  background-color: $secondary-color;
+  padding: 2.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Socials
+.socials {
+  display: flex;
+  gap: 2.5rem;
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+  }
+}
