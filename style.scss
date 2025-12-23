@@ -1,0 +1,34 @@
+// Import Aoenik Typeface
+@font-face {
+  font-family: "Aeonik";
+  src: url("./assets/fonts/aeonik/aeonik-regular.woff2") format("woff2"),
+    url("./assets/fonts/aeonik/aeonik-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aeonik";
+  src: url("./assets/fonts/aeonik/aeonik-bold.woff2") format("woff2"),
+    url("./assets/fonts/aeonik/aeonik-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Import Segoe Print Typeface
+@font-face {
+  font-family: "Segoe Print";
+  src: url("./assets/fonts/segoe-print/segoe-print-regular.woff2")
+      format("woff2"),
+    url("./assets/fonts/segoe-print/segoe-print-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Segoe Print";
+  src: url("./assets/fonts/segoe-print/segoe-print-bold.woff2") format("woff2"),
+    url("./assets/fonts/segoe-print/segoe-print-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
