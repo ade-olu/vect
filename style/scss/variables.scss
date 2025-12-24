@@ -1,0 +1,47 @@
+// Import Aoenik typeface
+@font-face {
+  font-family: "Aeonik", sans-serif;
+  src: url("../../assets/fonts/aeonik/aeonik-regular.woff2") format("woff2"),
+    url("../../assets/fonts/aeonik/aeonik-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aeonik", sans-serif;
+  src: url("../../assets/fonts/aeonik/aeonik-bold.woff2") format("woff2"),
+    url("../../assets/fonts/aeonik/aeonik-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Import Segoe Print typeface
+@font-face {
+  font-family: "Segoe Print", cursive;
+  src: url("../../assets/fonts/segoe-print/segoe-print-regular.woff2")
+      format("woff2"),
+    url("../../assets/fonts/segoe-print/segoe-print-regular.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Segoe Print", cursive;
+  src: url("../../assets/fonts/segoe-print/segoe-print-bold.woff2")
+      format("woff2"),
+    url("../../assets/fonts/segoe-print/segoe-print-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Variables for colors and fonts
+// Colors
+$primary-color: #7458ed;
+$secondary-color: #16131d;
+$secondary-color-2: #1f1b2a;
+$text-color: #ffffff;
+
+// Fonts
+$primary-font: "Aeonik", sans-serif;
+$accent-font: "Segoe Print", cursive;

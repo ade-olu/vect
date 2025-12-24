@@ -1,57 +1,12 @@
-// Import Aoenik typeface
-@font-face {
-  font-family: "Aeonik", sans-serif;
-  src: url("../../assets/fonts/aeonik/aeonik-regular.woff2") format("woff2"),
-    url("../../assets/fonts/aeonik/aeonik-regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Aeonik", sans-serif;
-  src: url("../../assets/fonts/aeonik/aeonik-bold.woff2") format("woff2"),
-    url("../../assets/fonts/aeonik/aeonik-bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-}
-
-// Import Segoe Print typeface
-@font-face {
-  font-family: "Segoe Print", cursive;
-  src: url("../../assets/fonts/segoe-print/segoe-print-regular.woff2")
-      format("woff2"),
-    url("../../assets/fonts/segoe-print/segoe-print-regular.woff")
-      format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Segoe Print", cursive;
-  src: url("../../assets/fonts/segoe-print/segoe-print-bold.woff2")
-      format("woff2"),
-    url("../../assets/fonts/segoe-print/segoe-print-bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-}
-
-// Variables for colors and fonts
-// Colors
-$primary-color: #7458ed;
-$secondary-color: #16131d;
-$secondary-color-2: #1f1b2a;
-$text-color: #ffffff;
-
-// Fonts
-$primary-font: "Aeonik", sans-serif;
-$accent-font: "Segoe Print", cursive;
+// Import variables from variables.scss
+@use "variables" as var;
 
 // Body
 body {
-  font-family: $primary-font;
+  font-family: var.$primary-font;
   font-size: 1.125rem;
-  background-color: $secondary-color;
-  color: $text-color;
+  background-color: var.$secondary-color;
+  color: var.$text-color;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -59,7 +14,7 @@ body {
 
 // Navbar
 .navbar {
-  background-color: $secondary-color;
+  background-color: var.$secondary-color;
   padding: 2.5rem;
   display: flex;
   justify-content: center;
@@ -99,7 +54,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  background-color: $secondary-color-2;
+  background-color: var.$secondary-color-2;
   padding: 0.5rem;
   border-radius: 1rem;
 }
@@ -113,7 +68,7 @@ body {
   height: 4rem;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: $secondary-color;
+  background-color: var.$secondary-color;
   border: none;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -127,7 +82,7 @@ body {
   }
 
   &:hover {
-    background-color: $primary-color;
+    background-color: var.$primary-color;
   }
 }
 
@@ -136,7 +91,7 @@ body {
   width: 2rem;
   height: 2rem;
   box-sizing: border-box;
-  border: 0.25rem solid $text-color;
+  border: 0.25rem solid var.$text-color;
   border-radius: 0.125rem;
 }
 
@@ -163,8 +118,8 @@ body {
   height: 1.5rem;
   box-sizing: border-box;
   border-radius: 50%;
-  border: 0.25rem solid $secondary-color;
-  background-color: $primary-color;
+  border: 0.25rem solid var.$secondary-color;
+  background-color: var.$primary-color;
 }
 
 // Specific styles for right toolbars
@@ -191,5 +146,5 @@ body {
 .editor-canvas {
   width: 100%;
   height: 100vh;
-  background-color: $text-color;
+  background-color: var.$text-color;
 }

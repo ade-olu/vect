@@ -1,56 +1,12 @@
-// Import Aoenik typeface
-@font-face {
-  font-family: "Aeonik", sans-serif;
-  src: url("../../assets/fonts/aeonik/aeonik-regular.woff2") format("woff2"),
-    url("../../assets/fonts/aeonik/aeonik-regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Aeonik", sans-serif;
-  src: url("../../assets/fonts/aeonik/aeonik-bold.woff2") format("woff2"),
-    url("../../assets/fonts/aeonik/aeonik-bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-}
-
-// Import Segoe Print typeface
-@font-face {
-  font-family: "Segoe Print", cursive;
-  src: url("../../assets/fonts/segoe-print/segoe-print-regular.woff2")
-      format("woff2"),
-    url("../../assets/fonts/segoe-print/segoe-print-regular.woff")
-      format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Segoe Print", cursive;
-  src: url("../../assets/fonts/segoe-print/segoe-print-bold.woff2")
-      format("woff2"),
-    url("../../assets/fonts/segoe-print/segoe-print-bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-}
-
-// Variables for colors and fonts
-// Colors
-$primary-color: #7458ed;
-$secondary-color: #16131d;
-$text-color: #ffffff;
-
-// Fonts
-$primary-font: "Aeonik", sans-serif;
-$accent-font: "Segoe Print", cursive;
+// Import variables from variables.scss
+@use "variables" as var;
 
 // Body
 body {
-  font-family: $primary-font;
+  font-family: var.$primary-font;
   font-size: 1.125rem;
-  background-color: $secondary-color;
-  color: $text-color;
+  background-color: var.$secondary-color;
+  color: var.$text-color;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -58,7 +14,7 @@ body {
 
 // Navbar
 .navbar {
-  background-color: $secondary-color;
+  background-color: var.$secondary-color;
   padding: 2.5rem;
   display: flex;
   justify-content: space-between;
@@ -76,7 +32,7 @@ body {
   list-style-type: none;
 
   a {
-    color: $text-color;
+    color: var.$text-color;
     text-decoration: none;
   }
 }
@@ -105,9 +61,9 @@ main {
 }
 
 .cursive-text {
-  font-family: $accent-font;
+  font-family: var.$accent-font;
   font-weight: bold;
-  color: $primary-color;
+  color: var.$primary-color;
 }
 
 // Subtext
@@ -119,8 +75,8 @@ main {
 .start-drawing-btn {
   display: inline-block;
   padding: 1rem 3rem;
-  background-color: $primary-color;
-  color: $text-color;
+  background-color: var.$primary-color;
+  color: var.$text-color;
   text-decoration: none;
   border-radius: 50rem;
   font-weight: bold;
@@ -140,7 +96,7 @@ main {
 // Footer
 .footer {
   display: flex;
-  background-color: $secondary-color;
+  background-color: var.$secondary-color;
   padding: 2.5rem;
   justify-content: space-between;
   align-items: center;
@@ -152,7 +108,7 @@ main {
   gap: 2.5rem;
 
   a {
-    color: $text-color;
+    color: var.$text-color;
     text-decoration: none;
   }
 }
