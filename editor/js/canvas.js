@@ -4,14 +4,32 @@ import { drawLine } from "./tools/draw-line.js";
 import { drawAirbrush } from "./tools/airbrush.js";
 import { drawEraser } from "./tools/eraser.js";
 
+// Get touch coordinates relative to the canvas
+function getTouchPos(touchEvent) {
+  const rect = canvas.getBoundingClientRect();
+  const touch = touchEvent.touches[0];
+  return {
+    x: touch.clientX - rect.left,
+    y: touch.clientY - rect.top,
+  };
+}
+
 // Setup canvas drawing event listeners for all tools
 export function setupCanvasDrawing() {
+  // Mouse events
   canvas.addEventListener("mousedown", startDrawing);
   canvas.addEventListener("mousemove", draw);
   canvas.addEventListener("mouseup", stopDrawing);
   canvas.addEventListener("mouseleave", stopDrawing);
+
+  // Touch events
+  canvas.addEventListener("touchstart", startTouchDrawing, { passive: false });
+  canvas.addEventListener("touchmove", drawTouch, { passive: false });
+  canvas.addEventListener("touchend", stopDrawing);
+  canvas.addEventListener("touchcancel", stopDrawing);
 }
 
+// Mouse drawing handlers
 // Start drawing on mousedown
 function startDrawing(e) {
   state.isDrawing = true;
@@ -53,6 +71,51 @@ function draw(e) {
   // Update last positions
   state.lastX = e.offsetX;
   state.lastY = e.offsetY;
+}
+
+// Touch drawing handlers
+// Start drawing on touchstart
+function startTouchDrawing(e) {
+  e.preventDefault(); // prevent scrolling
+  const pos = getTouchPos(e);
+
+  state.isDrawing = true;
+  state.lastX = pos.x;
+  state.lastY = pos.y;
+
+  ctx.beginPath();
+  ctx.moveTo(state.lastX, state.lastY);
+}
+
+// Draw on touchmove based on current tool
+function drawTouch(e) {
+  if (!state.isDrawing) return;
+  e.preventDefault(); // prevent scrolling
+
+  const pos = getTouchPos(e);
+
+  ctx.strokeStyle = state.color;
+  ctx.lineWidth = state.strokeSize;
+  ctx.globalAlpha = state.opacity;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+
+  switch (state.currentTool) {
+    case "pencil":
+    case "brush":
+    case "marker":
+      drawLine({ offsetX: pos.x, offsetY: pos.y }); // Reuse existing function
+      break;
+    case "airbrush":
+      drawAirbrush({ offsetX: pos.x, offsetY: pos.y });
+      break;
+    case "eraser":
+      drawEraser({ offsetX: pos.x, offsetY: pos.y });
+      break;
+  }
+
+  state.lastX = pos.x;
+  state.lastY = pos.y;
 }
 
 // Stop drawing on mouseup or mouseout
@@ -122,4 +185,33 @@ export function initializeCanvas() {
 // Clear the entire canvas
 export function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// Save the current canvas as an image file
+export function saveCanvas() {
+  // Ensure the last stroke is saved
+  if (state.isDrawing) {
+    state.isDrawing = false;
+    ctx.closePath();
+  }
+
+  const tempCanvas = document.createElement("canvas"); // Temporary canvas
+  // Set sizes to match main canvas
+  tempCanvas.width = canvas.width;
+  tempCanvas.height = canvas.height;
+  const tempCtx = tempCanvas.getContext("2d"); // Get context
+
+  // Fill white background
+  tempCtx.fillStyle = "#ffffff";
+  tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+  tempCtx.drawImage(canvas, 0, 0); // Draw the current canvas on top
+
+  const dataURL = tempCanvas.toDataURL("image/png"); // Convert to PNG
+
+  // Download
+  const link = document.createElement("a");
+  link.href = dataURL;
+  link.download = "drawing.png";
+  link.click();
 }

@@ -1,6 +1,6 @@
 // Import necessary variables from variables.js
-import { state, tools, toolConfig, actionTools } from "./variables.js";
-import { undo, redo } from "./canvas.js";
+import { canvas, state, tools, toolConfig, actionTools } from "./variables.js";
+import { undo, redo, clearCanvas, saveCanvas } from "./canvas.js";
 
 // Select a tool and update state/UI
 export function selectTool(toolName) {
@@ -58,13 +58,14 @@ export function setupActionListeners() {
 
   if (actionTools.clear) {
     actionTools.clear.addEventListener("click", () => {
-      console.log("Clear canvas clicked");
+      clearCanvas();
+      saveToHistory(); // So undo can bring it back
     });
   }
 
   if (actionTools.save) {
     actionTools.save.addEventListener("click", () => {
-      console.log("Save clicked");
+      saveCanvas();
     });
   }
 }
