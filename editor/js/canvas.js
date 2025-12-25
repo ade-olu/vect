@@ -2,6 +2,7 @@
 import { canvas, ctx, state, toolConfig } from "./variables.js";
 import { drawLine } from "./tools/draw-line.js";
 import { drawAirbrush } from "./tools/airbrush.js";
+import { drawEraser } from "./tools/eraser.js";
 
 // Setup canvas drawing event listeners for all tools
 export function setupCanvasDrawing() {
@@ -42,6 +43,10 @@ function draw(e) {
 
     case "airbrush":
       drawAirbrush(e); // Special handling for airbrush
+      break;
+
+    case "eraser":
+      drawEraser(e); // Erase using compositing
       break;
   }
 
