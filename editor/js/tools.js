@@ -1,5 +1,6 @@
 // Import necessary variables from variables.js
-import { state, tools, toolConfig } from "./variables.js";
+import { state, tools, toolConfig, actionTools } from "./variables.js";
+import { undo, redo } from "./canvas.js";
 
 // Select a tool and update state/UI
 export function selectTool(toolName) {
@@ -39,6 +40,33 @@ export function setupToolListeners() {
   });
 
   selectTool("pencil"); // Select pencil by default
+}
+
+// Setup event listeners for action tools (undo, redo, clear, save)
+export function setupActionListeners() {
+  if (actionTools.undo) {
+    actionTools.undo.addEventListener("click", () => {
+      undo();
+    });
+  }
+
+  if (actionTools.redo) {
+    actionTools.redo.addEventListener("click", () => {
+      redo();
+    });
+  }
+
+  if (actionTools.clear) {
+    actionTools.clear.addEventListener("click", () => {
+      console.log("Clear canvas clicked");
+    });
+  }
+
+  if (actionTools.save) {
+    actionTools.save.addEventListener("click", () => {
+      console.log("Save clicked");
+    });
+  }
 }
 
 // TODO: Add tool-specific behavior
