@@ -86,6 +86,11 @@ body {
   }
 }
 
+// Active tool
+.tool.active {
+  background-color: var.$primary-color;
+}
+
 // Shapes icon
 .shapes-icon {
   width: 2rem;

@@ -99,6 +99,10 @@ body {
   background-color: #7458ed;
 }
 
+.tool.active {
+  background-color: #7458ed;
+}
+
 .shapes-icon {
   width: 2rem;
   height: 2rem;
