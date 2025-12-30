@@ -59,7 +59,14 @@ body {
   border-radius: 1rem;
 }
 
-.tool {
+.left-toolbar-2,
+.right-toolbar-1 {
+  position: relative;
+}
+
+// Tool styles
+.tool,
+.shapes-tool {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,17 +94,61 @@ body {
 }
 
 // Active tool
-.tool.active {
+.tool.active,
+.shapes-tool.active {
   background-color: var.$primary-color;
 }
 
-// Shapes icon
-.shapes-icon {
+// Shapes and rectangle icons
+.shapes-icon,
+.rectangle-icon {
   width: 2rem;
   height: 2rem;
   box-sizing: border-box;
   border: 0.25rem solid var.$text-color;
   border-radius: 0.125rem;
+}
+
+// Shapes popup
+.shapes-popup {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  top: 0;
+  left: calc(100% + 1rem);
+  gap: 0.5rem;
+  background-color: var.$secondary-color-2;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  z-index: 1000;
+  display: none; // Hidden by default
+}
+
+// Line icon
+.line-icon {
+  width: 2rem;
+  height: 0.25rem;
+  background-color: var.$text-color;
+  box-sizing: border-box;
+  transform: rotate(-45deg);
+  border-radius: 1000px;
+}
+
+// Circle icon
+.circle-icon {
+  width: 2rem;
+  height: 2rem;
+  box-sizing: border-box;
+  border: 0.25rem solid var.$text-color;
+  border-radius: 50%;
+}
+
+// Triangle icon
+.shapes-tool img {
+  width: auto;
+  height: 2rem;
+  margin-left: 0;
 }
 
 // Color picker icon
@@ -136,6 +187,115 @@ body {
     height: 2rem;
     margin-left: 0;
   }
+}
+
+// Stroke size and opacity popup
+.stroke-size-popup,
+.opacity-popup {
+  position: absolute;
+  height: 9.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  top: 0;
+  right: calc(100% + 1rem);
+  background-color: var.$secondary-color-2;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  z-index: 1000;
+  display: none; // Hidden by default
+}
+
+// Default position for opacity popup
+.opacity-popup {
+  top: 4.5rem;
+}
+
+// Opacity popup position for if both popups are present
+.opacity-popup-2 {
+  top: calc(100% + 1rem);
+}
+
+.stroke-size-popup,
+.opacity-popup {
+  h4 {
+    margin: 0;
+    padding: 0;
+    color: var.$text-color;
+    font-size: 1.375rem;
+  }
+}
+
+.stroke-size-display,
+.opacity-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+// Stroke size and opacity range slider
+.stroke-size-range,
+.opacity-range {
+  -webkit-appearance: none;
+  width: 15rem;
+  height: 0.75rem;
+  background-color: var.$inactive-color;
+  border-radius: 1000px;
+  outline: none;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 2rem;
+    height: 2rem;
+    background-color: var.$primary-color;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 0.25rem solid var.$secondary-color-2;
+  }
+
+  &::-moz-range-thumb {
+    width: 2rem;
+    height: 2rem;
+    background-color: var.$primary-color;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 0.25rem solid var.$secondary-color-2;
+  }
+}
+
+// Stroke size and opacity value input
+.stroke-size-value,
+.opacity-value {
+  // Remove default input styles
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  text-align: center;
+
+  // Custom styles
+  width: 4rem;
+  height: 3rem;
+  background-color: var.$secondary-color;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var.$text-color;
+}
+
+.stroke-size-value::-webkit-outer-spin-button,
+.stroke-size-value::-webkit-inner-spin-button,
+.opacity-value::-webkit-outer-spin-button,
+.opacity-value::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 // Canvas

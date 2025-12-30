@@ -20,7 +20,7 @@
     <!-- Editor container -->
     <main class="editor-container">
       <!-- Left toolbar -->
-      <aside class="toolbar left-toolbar">
+      <aside class="toolbar left-toolbar" id="leftToolbar">
         <div class="left-toolbar-1">
           <!-- Pencil tool -->
           <div class="tool pencil-tool" id="pencilTool" title="Pencil">
@@ -48,6 +48,35 @@
           <div class="tool shapes-tool" id="shapesTool" title="Shapes">
             <div class="shapes-icon"></div>
           </div>
+
+          <!-- Shapes popup -->
+          <div class="shapes-popup" id="shapesPopup">
+            <!-- Line tool -->
+            <div class="shapes-tool line-tool" id="lineTool" title="Line">
+              <div class="line-icon"></div>
+            </div>
+            <!-- Rectangle tool -->
+            <div
+              class="shapes-tool rectangle-tool"
+              id="rectangleTool"
+              title="Rectangle"
+            >
+              <div class="rectangle-icon"></div>
+            </div>
+            <!-- Circle tool -->
+            <div class="shapes-tool circle-tool" id="circleTool" title="Circle">
+              <div class="circle-icon"></div>
+            </div>
+            <!-- Triangle tool -->
+            <div
+              class="shapes-tool triangle-tool"
+              id="triangleTool"
+              title="Triangle"
+            >
+              <img src="../editor/assets/icons/triangle.svg" alt="Triangle" />
+            </div>
+          </div>
+
           <!-- Color picker tool -->
           <div
             class="tool color-picker-tool"
@@ -83,9 +112,60 @@
               alt="Stroke Size"
             />
           </div>
+
           <!-- Opacity tool -->
           <div class="tool opacity-tool" id="opacityTool" title="Opacity">
             <img src="../editor/assets/icons/opacity.svg" alt="Opacity" />
+          </div>
+
+          <!-- Stroke size popup -->
+          <div class="stroke-size-popup" id="strokeSizePopup">
+            <h4>Stroke Size</h4>
+            <div class="stroke-size-display" id="strokeSizeDisplay">
+              <!-- Stroke size range slider -->
+              <input
+                class="stroke-size-range"
+                type="range"
+                id="strokeSizeRange"
+                min="1"
+                max="100"
+                value="60"
+              />
+              <!-- Stroke size input value -->
+              <input
+                class="stroke-size-value"
+                id="strokeSizeValue"
+                type="number"
+                min="1"
+                max="100"
+                value="60"
+              />
+            </div>
+          </div>
+
+          <!-- Opacity popup -->
+          <div class="opacity-popup opacity-popup-2" id="opacityPopup">
+            <h4>Opacity</h4>
+            <div class="opacity-display" id="opacityDisplay">
+              <!-- Opacity range slider -->
+              <input
+                class="opacity-range"
+                type="range"
+                id="opacityRange"
+                min="0"
+                max="100"
+                value="100"
+              />
+              <!-- Opacity input value -->
+              <input
+                class="opacity-value"
+                id="opacityValue"
+                type="number"
+                min="0"
+                max="100"
+                value="100"
+              />
+            </div>
           </div>
         </div>
         <div class="right-toolbar-2">
