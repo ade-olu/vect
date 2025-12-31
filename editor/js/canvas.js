@@ -76,7 +76,7 @@ function draw(e) {
 // Touch drawing handlers
 // Start drawing on touchstart
 function startTouchDrawing(e) {
-  e.preventDefault(); // prevent scrolling
+  e.preventDefault(); // Prevent scrolling
   const pos = getTouchPos(e);
 
   state.isDrawing = true;
@@ -90,7 +90,7 @@ function startTouchDrawing(e) {
 // Draw on touchmove based on current tool
 function drawTouch(e) {
   if (!state.isDrawing) return;
-  e.preventDefault(); // prevent scrolling
+  e.preventDefault(); // Prevent scrolling
 
   const pos = getTouchPos(e);
 
@@ -206,7 +206,16 @@ export function initializeCanvas() {
 export function saveToLocalStorage() {
   try {
     const dataURL = canvas.toDataURL();
-    localStorage.setItem("canvasSnapshot", dataURL);
+    const rect = canvas.getBoundingClientRect();
+    const canvasData = {
+      image: dataURL,
+      width: canvas.width,
+      height: canvas.height,
+      logicalWidth: rect.width,
+      logicalHeight: rect.height,
+      dpr: window.devicePixelRatio || 1,
+    };
+    localStorage.setItem("canvasSnapshot", JSON.stringify(canvasData));
   } catch (e) {
     console.warn("Failed to save canvas to localStorage:", e);
   }
@@ -214,12 +223,37 @@ export function saveToLocalStorage() {
 
 // Restore canvas from local storage if available
 export function restoreFromLocalStorage() {
-  const dataURL = localStorage.getItem("canvasSnapshot");
-  if (!dataURL) return;
+  const savedData = localStorage.getItem("canvasSnapshot");
+  if (!savedData) return;
 
-  const img = new Image();
-  img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  img.src = dataURL;
+  try {
+    // Try parsing as JSON (new format)
+    const canvasData = JSON.parse(savedData);
+    const img = new Image();
+    img.onload = () => {
+      // Save and reset transform to draw at physical pixel level
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+      // Draw image at exact original pixel size (no scaling)
+      // This preserves absolute position across refreshes
+      ctx.drawImage(img, 0, 0);
+
+      // Restore the DPR transform
+      ctx.restore();
+    };
+    img.src = canvasData.image;
+  } catch (e) {
+    // Fallback for old format (direct dataURL string)
+    const img = new Image();
+    img.onload = () => {
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.drawImage(img, 0, 0);
+      ctx.restore();
+    };
+    img.src = savedData;
+  }
 }
 
 // Clear the entire canvas
