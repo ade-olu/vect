@@ -40,7 +40,7 @@ export const state = {
   currentTool: "pencil",
 
   // Drawing properties
-  color: "#7458ed",
+  color: "#16131d",
   strokeSize: 5,
   opacity: 1,
 
