@@ -28,13 +28,16 @@ body {
 }
 
 // Nav links
-.about {
-  list-style-type: none;
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-  a {
-    color: var.$text-color;
-    text-decoration: none;
-  }
+.about a {
+  color: var.$text-color;
+  text-decoration: none;
 }
 
 // Main content

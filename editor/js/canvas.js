@@ -116,6 +116,8 @@ function drawTouch(e) {
 
   state.lastX = pos.x;
   state.lastY = pos.y;
+
+  saveToLocalStorage(); // Save progress while drawing
 }
 
 // Stop drawing on mouseup or mouseout
@@ -130,8 +132,10 @@ function stopDrawing() {
   ctx.strokeStyle = "#000000";
 
   saveToHistory(); // Save this stroke to history
+  saveToLocalStorage(); // Save current canvas to local storage
 }
 
+// History management functions
 // Save current canvas state to history (like a photo for undo/redo)
 export function saveToHistory() {
   // Remove any "future" steps if we drew after undoing
@@ -160,6 +164,7 @@ export function undo() {
   const imageData = state.history[state.historyStep];
   ctx.putImageData(imageData, 0, 0); // Paste the old photo
   console.log(`Undo: step ${state.historyStep}`);
+  saveToLocalStorage(); // Save the undone state to local storage
 }
 
 // Go forward one step (redo)
@@ -171,20 +176,63 @@ export function redo() {
   const imageData = state.history[state.historyStep];
   ctx.putImageData(imageData, 0, 0); // Paste the photo from the future
   console.log(`Redo: step ${state.historyStep}`);
+  saveToLocalStorage(); // Save the redone state to local storage
 }
 
 // Initialize canvas dimensions
 export function initializeCanvas() {
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
 
-  // Save the blank canvas as the first history state so users can undo to it
-  saveToHistory();
+  // Set internal resolution
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+
+  // Set CSS size
+  canvas.style.width = `${rect.width}px`;
+  canvas.style.height = `${rect.height}px`;
+
+  // Normalize coordinate system
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  restoreFromLocalStorage(); // Restore content if available
+
+  /* Save the blank canvas as the first history state so users can undo to it
+  saveToHistory(); */
+}
+
+// Local storage support
+// Save current canvas to local storage
+export function saveToLocalStorage() {
+  try {
+    const dataURL = canvas.toDataURL();
+    localStorage.setItem("canvasSnapshot", dataURL);
+  } catch (e) {
+    console.warn("Failed to save canvas to localStorage:", e);
+  }
+}
+
+// Restore canvas from local storage if available
+export function restoreFromLocalStorage() {
+  const dataURL = localStorage.getItem("canvasSnapshot");
+  if (!dataURL) return;
+
+  const img = new Image();
+  img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  img.src = dataURL;
 }
 
 // Clear the entire canvas
 export function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Remove saved snapshot so it doesn't come back on refresh
+  localStorage.removeItem("canvasSnapshot");
+  // Optionally, reset history
+  state.history = [];
+  state.historyStep = -1;
+
+  /* Save blank canvas to history so clear can be undone
+  saveToHistory(); */
 }
 
 // Save the current canvas as an image file
