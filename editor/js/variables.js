@@ -18,6 +18,17 @@ export const tools = {
   shapes: document.getElementById("shapesTool"),
 };
 
+// Shape tools (line, rectangle, circle, triangle)
+export const shapeTools = {
+  line: document.getElementById("lineTool"),
+  rectangle: document.getElementById("rectangleTool"),
+  circle: document.getElementById("circleTool"),
+  triangle: document.getElementById("triangleTool"),
+};
+
+// Popup containers
+export const shapesPopup = document.getElementById("shapesPopup");
+
 // Style tools (color picker, stroke size, opacity)
 export const styleTools = {
   colorPicker: document.getElementById("colorPickerTool"),
@@ -38,6 +49,9 @@ export const actionTools = {
 export const state = {
   // Current tool
   currentTool: "pencil",
+
+  // Current shape (for shape tools)
+  currentShape: "line",
 
   // Drawing properties
   color: "#16131d",

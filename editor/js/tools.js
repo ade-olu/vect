@@ -1,6 +1,77 @@
 // Import necessary variables from variables.js
-import { canvas, state, tools, toolConfig, actionTools } from "./variables.js";
-import { undo, redo, clearCanvas, saveCanvas } from "./canvas.js";
+import {
+  state,
+  tools,
+  toolConfig,
+  actionTools,
+  shapeTools,
+  shapesPopup,
+} from "./variables.js";
+import {
+  undo,
+  redo,
+  clearCanvas,
+  saveCanvas,
+  saveToHistory,
+} from "./canvas.js";
+
+// Set the active tool button in the UI
+function setActiveToolButton(toolName) {
+  Object.values(tools).forEach((tool) => {
+    if (tool) tool.classList.remove("active");
+  });
+
+  const selectedTool = tools[toolName];
+  if (selectedTool) {
+    selectedTool.classList.add("active");
+  }
+}
+
+// Show or hide the shapes popup
+function toggleShapesPopup(shouldShow) {
+  if (!shapesPopup) return;
+  shapesPopup.classList.toggle("visible", shouldShow);
+}
+
+// Select a shape tool and update state/UI
+function selectShapeTool(shapeName) {
+  const shapeElement = shapeTools[shapeName];
+  if (!shapeElement) {
+    console.warn(`Shape tool "${shapeName}" not found`);
+    return;
+  }
+
+  Object.values(shapeTools).forEach((shapeTool) => {
+    if (shapeTool) shapeTool.classList.remove("active");
+  });
+
+  shapeElement.classList.add("active");
+  state.currentShape = shapeName;
+  state.currentTool = shapeName;
+  setActiveToolButton("shapes");
+}
+
+// Sync shape selection in the UI with state
+function syncShapeSelection() {
+  let desiredShape;
+
+  if (state.currentShape && shapeTools[state.currentShape]) {
+    desiredShape = state.currentShape;
+  } else {
+    desiredShape = "line";
+  }
+
+  Object.values(shapeTools).forEach((shapeTool) => {
+    if (shapeTool) shapeTool.classList.remove("active");
+  });
+
+  const activeShape = shapeTools[desiredShape];
+  if (activeShape) {
+    activeShape.classList.add("active");
+  }
+
+  state.currentShape = desiredShape;
+}
 
 // Select a tool and update state/UI
 export function selectTool(toolName) {
@@ -16,15 +87,7 @@ export function selectTool(toolName) {
   state.opacity = toolConfig[toolName].opacity;
 
   // Update UI by removing active class from all tools
-  Object.values(tools).forEach((tool) => {
-    if (tool) tool.classList.remove("active");
-  });
-
-  // Add active class to selected tool
-  const selectedTool = tools[toolName];
-  if (selectedTool) {
-    selectedTool.classList.add("active");
-  }
+  setActiveToolButton(toolName);
 
   console.log(`Tool selected: ${toolName}`);
 }
@@ -35,7 +98,31 @@ export function setupToolListeners() {
     if (!toolElement) return;
 
     toolElement.addEventListener("click", () => {
+      if (toolName === "shapes") {
+        const willShowPopup = shapesPopup
+          ? !shapesPopup.classList.contains("visible")
+          : true;
+
+        toggleShapesPopup(willShowPopup);
+        if (willShowPopup) {
+          syncShapeSelection();
+          state.currentTool = state.currentShape;
+          setActiveToolButton("shapes");
+        }
+        return;
+      }
+
+      toggleShapesPopup(false);
       selectTool(toolName);
+    });
+  });
+
+  Object.entries(shapeTools).forEach(([shapeName, shapeElement]) => {
+    if (!shapeElement) return;
+
+    shapeElement.addEventListener("click", () => {
+      selectShapeTool(shapeName);
+      toggleShapesPopup(true); // Keep popup open while picking shapes
     });
   });
 
@@ -69,7 +156,3 @@ export function setupActionListeners() {
     });
   }
 }
-
-// TODO: Add tool-specific behavior
-// TODO: Add tool cursor changes
-// TODO: Add tool tooltips/feedback

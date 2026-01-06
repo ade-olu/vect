@@ -1,8 +1,16 @@
 // Import the necessary variables from variables.js
-import { canvas, ctx, state, toolConfig } from "./variables.js";
-import { drawLine } from "./tools/draw-line.js";
-import { drawAirbrush } from "./tools/airbrush.js";
-import { drawEraser } from "./tools/eraser.js";
+import {
+  canvas,
+  ctx,
+  state,
+  toolConfig,
+  shapeTools,
+  shapesPopup,
+} from "./variables.js";
+import { drawLine } from "./tools/draw-line.js"; // For pencil, brush, marker
+import { drawAirbrush } from "./tools/airbrush.js"; // For airbrush tool
+import { drawEraser } from "./tools/eraser.js"; // For eraser tool
+import { drawShape } from "./tools/shapes.js"; // For shape tools
 
 // Get touch coordinates relative to the canvas
 function getTouchPos(touchEvent) {
@@ -29,12 +37,26 @@ export function setupCanvasDrawing() {
   canvas.addEventListener("touchcancel", stopDrawing);
 }
 
+// Check if the current tool is a shape tool
+function isShapeTool(toolName) {
+  return Boolean(shapeTools && shapeTools[toolName]);
+}
+
 // Mouse drawing handlers
 // Start drawing on mousedown
 function startDrawing(e) {
+  if (isShapeTool(state.currentTool) && shapesPopup) {
+    shapesPopup.classList.remove("visible");
+  }
+
   state.isDrawing = true;
   state.lastX = e.offsetX;
   state.lastY = e.offsetY;
+
+  // Save a snapshot of the canvas before drawing the shape
+  if (isShapeTool(state.currentTool)) {
+    state.canvasSnapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  }
 
   ctx.beginPath();
   ctx.moveTo(state.lastX, state.lastY);
@@ -50,6 +72,17 @@ function draw(e) {
   ctx.globalAlpha = state.opacity;
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
+
+  // Check if current tool is a shape tool
+  if (isShapeTool(state.currentTool)) {
+    // Restore the canvas to the snapshot before drawing the shape
+    if (state.canvasSnapshot) {
+      ctx.putImageData(state.canvasSnapshot, 0, 0);
+    }
+
+    drawShape(e, state.currentShape);
+    return;
+  }
 
   // Handle drawing based on selected tool
   switch (state.currentTool) {
@@ -79,9 +112,18 @@ function startTouchDrawing(e) {
   e.preventDefault(); // Prevent scrolling
   const pos = getTouchPos(e);
 
+  if (isShapeTool(state.currentTool) && shapesPopup) {
+    shapesPopup.classList.remove("visible");
+  }
+
   state.isDrawing = true;
   state.lastX = pos.x;
   state.lastY = pos.y;
+
+  // Save a snapshot of the canvas before drawing the shape
+  if (isShapeTool(state.currentTool)) {
+    state.canvasSnapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  }
 
   ctx.beginPath();
   ctx.moveTo(state.lastX, state.lastY);
@@ -99,6 +141,17 @@ function drawTouch(e) {
   ctx.globalAlpha = state.opacity;
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
+
+  // Check if current tool is a shape tool
+  if (isShapeTool(state.currentTool)) {
+    // Restore the canvas to the snapshot before drawing the shape
+    if (state.canvasSnapshot) {
+      ctx.putImageData(state.canvasSnapshot, 0, 0);
+    }
+
+    drawShape({ offsetX: pos.x, offsetY: pos.y }, state.currentShape);
+    return;
+  }
 
   switch (state.currentTool) {
     case "pencil":
@@ -129,7 +182,10 @@ function stopDrawing() {
 
   // Reset canvas properties to prevent affecting history snapshots
   ctx.globalAlpha = 1;
-  ctx.strokeStyle = "#000000";
+  ctx.strokeStyle = "#16131d";
+
+  // Remove the temporary canvas snapshot
+  delete state.canvasSnapshot;
 
   saveToHistory(); // Save this stroke to history
   saveToLocalStorage(); // Save current canvas to local storage

@@ -138,6 +138,10 @@ body {
   display: none;
 }
 
+.shapes-popup.visible {
+  display: flex;
+}
+
 .line-icon {
   width: 1.5rem;
   height: 0.2rem;

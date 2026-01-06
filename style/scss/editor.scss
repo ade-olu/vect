@@ -127,6 +127,10 @@ body {
   display: none; // Hidden by default
 }
 
+.shapes-popup.visible {
+  display: flex;
+}
+
 // Line icon
 .line-icon {
   width: 1.5rem;
