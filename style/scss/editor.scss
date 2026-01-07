@@ -129,6 +129,18 @@ body {
 
 .shapes-popup.visible {
   display: flex;
+
+  // Add a simple fade-in animation
+  animation: fadeIn 0.15s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 // Line icon
@@ -236,6 +248,18 @@ body {
 .stroke-size-popup.visible,
 .opacity-popup.visible {
   display: flex;
+
+  // Add a simple fade-in animation
+  animation: fadeIn 0.15s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 .stroke-size-display,
