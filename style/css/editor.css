@@ -214,16 +214,21 @@ body {
   top: 3.5rem;
 }
 
+/* Opacity popup position for if both popups are present
 .opacity-popup-2 {
   top: calc(100% + 1rem);
-}
-
+} */
 .stroke-size-popup h4,
 .opacity-popup h4 {
   margin: 0;
   padding: 0;
   color: #ffffff;
   font-size: 1.25rem;
+}
+
+.stroke-size-popup.visible,
+.opacity-popup.visible {
+  display: flex;
 }
 
 .stroke-size-display,

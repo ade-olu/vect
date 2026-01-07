@@ -6,11 +6,22 @@ import {
   toolConfig,
   shapeTools,
   shapesPopup,
+  strokeSizePopup,
+  opacityPopup,
+  styleTools,
 } from "./variables.js";
 import { drawLine } from "./tools/draw-line.js"; // For pencil, brush, marker
 import { drawAirbrush } from "./tools/airbrush.js"; // For airbrush tool
 import { drawEraser } from "./tools/eraser.js"; // For eraser tool
 import { drawShape } from "./tools/shapes.js"; // For shape tools
+
+// Close style popups
+function closeStylePopups() {
+  if (strokeSizePopup) strokeSizePopup.classList.remove("visible");
+  if (opacityPopup) opacityPopup.classList.remove("visible");
+  if (styleTools.strokeSize) styleTools.strokeSize.classList.remove("active");
+  if (styleTools.opacity) styleTools.opacity.classList.remove("active");
+}
 
 // Get touch coordinates relative to the canvas
 function getTouchPos(touchEvent) {
@@ -45,6 +56,8 @@ function isShapeTool(toolName) {
 // Mouse drawing handlers
 // Start drawing on mousedown
 function startDrawing(e) {
+  closeStylePopups(); // Close any open style popups
+
   if (isShapeTool(state.currentTool) && shapesPopup) {
     shapesPopup.classList.remove("visible");
   }
@@ -60,6 +73,11 @@ function startDrawing(e) {
 
   ctx.beginPath();
   ctx.moveTo(state.lastX, state.lastY);
+  ctx.lineWidth = state.strokeSize;
+  ctx.strokeStyle = state.color;
+  ctx.globalAlpha = state.opacity;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
 }
 
 // Draw on mousemove based on current tool
@@ -110,6 +128,7 @@ function draw(e) {
 // Start drawing on touchstart
 function startTouchDrawing(e) {
   e.preventDefault(); // Prevent scrolling
+  closeStylePopups(); // Close any open style popups
   const pos = getTouchPos(e);
 
   if (isShapeTool(state.currentTool) && shapesPopup) {
@@ -127,6 +146,11 @@ function startTouchDrawing(e) {
 
   ctx.beginPath();
   ctx.moveTo(state.lastX, state.lastY);
+  ctx.lineWidth = state.strokeSize;
+  ctx.strokeStyle = state.color;
+  ctx.globalAlpha = state.opacity;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
 }
 
 // Draw on touchmove based on current tool

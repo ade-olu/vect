@@ -28,6 +28,14 @@ export const shapeTools = {
 
 // Popup containers
 export const shapesPopup = document.getElementById("shapesPopup");
+export const strokeSizePopup = document.getElementById("strokeSizePopup");
+export const opacityPopup = document.getElementById("opacityPopup");
+
+// Input elements (stroke size, opacity)
+export const strokeSizeRange = document.getElementById("strokeSizeRange");
+export const strokeSizeValue = document.getElementById("strokeSizeValue");
+export const opacityRange = document.getElementById("opacityRange");
+export const opacityValue = document.getElementById("opacityValue");
 
 // Style tools (color picker, stroke size, opacity)
 export const styleTools = {

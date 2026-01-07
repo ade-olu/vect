@@ -6,6 +6,7 @@ import {
   actionTools,
   shapeTools,
   shapesPopup,
+  styleTools,
 } from "./variables.js";
 import {
   undo,
@@ -14,6 +15,11 @@ import {
   saveCanvas,
   saveToHistory,
 } from "./canvas.js";
+import {
+  openStrokeSizePopup,
+  openOpacityPopup,
+  syncStyleToolValues,
+} from "./properties.js";
 
 // Set the active tool button in the UI
 function setActiveToolButton(toolName) {
@@ -86,6 +92,9 @@ export function selectTool(toolName) {
   state.strokeSize = toolConfig[toolName].strokeSize;
   state.opacity = toolConfig[toolName].opacity;
 
+  // Sync style tool UI values
+  syncStyleToolValues();
+
   // Update UI by removing active class from all tools
   setActiveToolButton(toolName);
 
@@ -155,4 +164,15 @@ export function setupActionListeners() {
       saveCanvas();
     });
   }
+}
+
+// Add listeners for style tools (stroke size, opacity)
+export function setupStyleToolListeners() {
+  styleTools.strokeSize.addEventListener("click", () => {
+    openStrokeSizePopup();
+  });
+
+  styleTools.opacity.addEventListener("click", () => {
+    openOpacityPopup();
+  });
 }

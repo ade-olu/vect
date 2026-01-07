@@ -218,10 +218,10 @@ body {
   top: 3.5rem;
 }
 
-// Opacity popup position for if both popups are present
+/* Opacity popup position for if both popups are present
 .opacity-popup-2 {
   top: calc(100% + 1rem);
-}
+} */
 
 .stroke-size-popup,
 .opacity-popup {
@@ -231,6 +231,11 @@ body {
     color: var.$text-color;
     font-size: 1.25rem;
   }
+}
+
+.stroke-size-popup.visible,
+.opacity-popup.visible {
+  display: flex;
 }
 
 .stroke-size-display,
