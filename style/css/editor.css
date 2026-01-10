@@ -76,6 +76,7 @@ body {
   border-radius: 1rem;
 }
 
+.left-toolbar,
 .left-toolbar-2,
 .right-toolbar-1 {
   position: relative;
@@ -194,6 +195,289 @@ body {
   background-color: #16131d;
 }
 
+.color-picker-popup {
+  position: absolute;
+  width: auto;
+  height: 100%;
+  top: 0;
+  left: calc(100% + 1rem);
+  background-color: #1f1b2a;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  z-index: 1000;
+}
+
+.color-picker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.color-picker-header h4 {
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  font-size: 1.25rem;
+}
+.color-picker-header img {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.color-selection-area {
+  flex: 1;
+  width: 26rem;
+  background: linear-gradient(to bottom, transparent, black), linear-gradient(to right, white, transparent);
+  position: relative;
+  border-radius: 0.5rem;
+}
+
+.color-selection-cursor {
+  width: 1.5rem;
+  height: 1.5rem;
+  box-sizing: border-box;
+  background-color: #7458ed;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 0.25rem solid #ffffff;
+  position: absolute;
+  transform: translate(-25%, -25%);
+}
+
+.color-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.hue-slider,
+.color-opacity-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 1rem;
+  border-radius: 1000px;
+  outline: none;
+  cursor: pointer;
+}
+.hue-slider::-webkit-slider-thumb,
+.color-opacity-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #7458ed;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 0.25rem solid #ffffff;
+}
+.hue-slider::-moz-range-thumb,
+.color-opacity-slider::-moz-range-thumb {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #7458ed;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 0.25rem solid #ffffff;
+}
+
+.hue-slider {
+  background: linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+}
+
+.color-opacity-slider {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), #7458ed);
+}
+.color-opacity-slider::-webkit-slider-thumb {
+  background-color: #ffffff !important;
+}
+.color-opacity-slider::-moz-range-thumb {
+  background-color: #ffffff !important;
+}
+
+.input-row {
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 5.5rem 2fr 5.5rem;
+  align-items: center;
+  gap: 1rem;
+}
+
+.color-format {
+  grid-column: 1;
+  width: 100%;
+}
+
+.color-format-options {
+  display: none;
+}
+
+.color-format-toggle {
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  background-color: #16131d;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 1rem;
+}
+.color-format-toggle img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.color-inputs {
+  grid-column: 2;
+  width: 100%;
+}
+.color-inputs input {
+  width: 100%;
+  height: 2.5rem;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0 1rem;
+  background-color: #16131d;
+  color: #ffffff;
+  font-family: "Aeonik", sans-serif;
+  font-size: 1rem;
+}
+.color-inputs input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.color-inputs input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.color-inputs input:focus {
+  outline: none;
+}
+
+.rgb,
+.hsl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  display: none;
+}
+.rgb input,
+.hsl input {
+  width: 100%;
+  height: 2.5rem;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0 1rem;
+  background-color: #16131d;
+  color: #ffffff;
+  font-family: "Aeonik", sans-serif;
+  font-size: 1rem;
+}
+.rgb input::-webkit-outer-spin-button, .rgb input::-webkit-inner-spin-button,
+.hsl input::-webkit-outer-spin-button,
+.hsl input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.rgb input::-moz-placeholder, .hsl input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.rgb input::placeholder,
+.hsl input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.rgb input:focus,
+.hsl input:focus {
+  outline: none;
+}
+
+.opacity-input {
+  position: relative;
+  grid-column: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+.opacity-input input {
+  width: 100%;
+  height: 2.5rem;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0 1rem;
+  background-color: #16131d;
+  color: #ffffff;
+  font-family: "Aeonik", sans-serif;
+  font-size: 1rem;
+}
+.opacity-input input::-webkit-outer-spin-button, .opacity-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.opacity-input input::-moz-placeholder {
+  color: #868489;
+}
+.opacity-input input::placeholder {
+  color: #868489;
+}
+.opacity-input input:focus {
+  outline: none;
+}
+.opacity-input span {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #868489;
+  font-size: 1rem;
+}
+
+.saved-colors h4 {
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: normal;
+  margin-bottom: 1rem;
+}
+
+.add-color {
+  width: 1.5rem;
+  height: 1.5rem;
+  box-sizing: border-box;
+  background: #16131d;
+  border: 1px dashed rgba(134, 132, 137, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #868489;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem !important;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.add-color:hover {
+  border-color: #7458ed;
+  color: #7458ed;
+}
+
 .left-toolbar-2 .tool img,
 .right-toolbar-1 .tool img,
 .right-toolbar-2 .tool img {
@@ -297,7 +581,7 @@ body {
   font: inherit;
   text-align: center;
   width: 4rem;
-  height: 3rem;
+  height: 2.5rem;
   background-color: #16131d;
   box-sizing: border-box;
   border-radius: 0.5rem;

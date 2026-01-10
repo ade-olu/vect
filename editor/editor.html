@@ -93,6 +93,177 @@
             </div>
           </div>
         </div>
+
+        <!-- Color picker popup -->
+        <div class="color-picker-popup" id="colorPickerPopup">
+          <!-- Header -->
+          <div class="color-picker-header">
+            <h4>Color Picker</h4>
+            <div class="close-color-picker" id="closeColorPicker" title="Close">
+              <img
+                src="../editor/assets/icons/close.svg"
+                alt="Close Color Picker"
+              />
+            </div>
+          </div>
+
+          <!-- Color selection area -->
+          <div class="color-selection-area">
+            <div class="color-selection-cursor" id="colorSelectionCursor"></div>
+          </div>
+
+          <!-- Color sliders -->
+          <div class="color-sliders" id="colorSlides">
+            <!-- Hue slider -->
+            <div class="hue-slider-container">
+              <input
+                type="range"
+                class="hue-slider"
+                id="hueSlider"
+                min="0"
+                max="360"
+                value="0"
+              />
+            </div>
+
+            <!-- Opacity slider -->
+            <div class="opacity-slider-container">
+              <input
+                type="range"
+                class="color-opacity-slider"
+                id="colorOpacitySlider"
+                min="0"
+                max="100"
+                value="100"
+              />
+            </div>
+          </div>
+
+          <!-- Color format dropdown -->
+          <div class="input-row" id="inputRow">
+            <div class="color-format">
+              <button
+                type="button"
+                class="color-format-toggle"
+                id="colorFormatToggle"
+                aria-label="Select Color Format"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+              >
+                <span id="selectedColorFormat">HEX</span>
+                <img
+                  src="../editor/assets/icons/dropdown-arrow.svg"
+                  alt="Dropdown Arrow"
+                />
+              </button>
+
+              <ul class="color-format-options" role="listbox">
+                <li role="option" data-format="HEX">HEX</li>
+                <li role="option" data-format="RGB">RGB</li>
+                <li role="option" data-format="HSL">HSL</li>
+              </ul>
+            </div>
+
+            <!-- Color inputs for color formats -->
+            <div class="color-inputs">
+              <div
+                class="format-inputs hex"
+                id="hexFormatInput"
+                data-format="HEX"
+              >
+                <input
+                  type="text"
+                  id="hexInput"
+                  maxlength="7"
+                  placeholder="#FFFFFF"
+                />
+              </div>
+
+              <div
+                class="format-inputs rgb"
+                id="rgbFormatInput"
+                data-format="RGB"
+              >
+                <input
+                  type="number"
+                  min="0"
+                  max="255"
+                  id="rgbRInput"
+                  placeholder="R"
+                />
+                <input
+                  type="number"
+                  min="0"
+                  max="255"
+                  id="rgbGInput"
+                  placeholder="G"
+                />
+                <input
+                  type="number"
+                  min="0"
+                  max="255"
+                  id="rgbBInput"
+                  placeholder="B"
+                />
+              </div>
+
+              <div
+                class="format-inputs hsl"
+                id="hslFormatInput"
+                data-format="HSL"
+              >
+                <input
+                  type="number"
+                  min="0"
+                  max="360"
+                  id="hslHInput"
+                  placeholder="H"
+                />
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
+                  id="hslSInput"
+                  placeholder="S"
+                />
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
+                  id="hslLInput"
+                  placeholder="L"
+                />
+              </div>
+            </div>
+
+            <!-- Color opacity -->
+            <div class="opacity-input">
+              <input
+                type="number"
+                min="0"
+                max="100"
+                step="1"
+                value="100"
+                aria-label="Opacity"
+                id="colorOpacityInput"
+              />
+              <span>%</span>
+            </div>
+          </div>
+
+          <!-- Saved colors -->
+          <div class="saved-colors" id="savedColors">
+            <h4>Saved Colors</h4>
+            <div class="saved-colors-container" id="savedColorsContainer">
+              <!-- Saved color swatches will be added here dynamically -->
+              <div class="saved-colors-grid" id="savedColors"></div>
+              <!-- Add color -->
+              <button class="add-color" id="addColor" title="Add Color">
+                +
+              </button>
+            </div>
+          </div>
+        </div>
       </aside>
 
       <!-- Canvas -->
