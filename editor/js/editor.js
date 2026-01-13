@@ -1,4 +1,4 @@
-// Import necessary functions from canvas.js and tools.js
+// Import necessary functions from canvas.js, tools.js, and color-picker.js
 import {
   initializeCanvas,
   setupCanvasDrawing,
@@ -9,6 +9,7 @@ import {
   setupActionListeners,
   setupStyleToolListeners,
 } from "./tools.js";
+import { colorPickerDropdown } from "./color-picker.js";
 
 let currentDPR = window.devicePixelRatio; // Track current device pixel ratio
 
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupActionListeners(); // Attach action button listeners (undo, redo, clear, save)
   setupStyleToolListeners(); // Attach style tool listeners (color picker, stroke size, opacity)
   setupCanvasDrawing(); // Activate canvas drawing event listeners
+  colorPickerDropdown(); // Initialize color picker dropdown functionality
 
   // Listen for window resize and orientation change events
   window.addEventListener("resize", handleCanvasResize);
