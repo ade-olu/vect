@@ -126,6 +126,7 @@ body {
   border-radius: 1rem;
   z-index: 1000;
   display: none; // Hidden by default
+  transition: opacity 0.15s ease-in-out;
 }
 
 .shapes-popup.visible {
@@ -142,6 +143,10 @@ body {
       opacity: 1;
     }
   }
+}
+
+.shapes-popup.closing {
+  opacity: 0;
 }
 
 // Line icon
@@ -208,11 +213,34 @@ body {
   padding: 1rem;
   box-sizing: border-box;
   border-radius: 1rem;
-  display: flex;
+  display: none; // Hidden by default
   flex-direction: column;
   justify-content: space-between;
   gap: 1.5rem;
   z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.15s ease-in-out;
+
+  &.visible {
+    display: flex;
+
+    // Add a simple fade-in animation
+    animation: fadeIn 0.15s ease-in-out;
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Fade out animation when closing
+  &.closing {
+    opacity: 0;
+  }
 }
 
 // Color picker header
@@ -283,7 +311,7 @@ body {
     appearance: none;
     width: 1.5rem;
     height: 1.5rem;
-    background-color: var.$primary-color;
+    background-color: var(--hue-thumb-color, var.$primary-color);
     border-radius: 50%;
     cursor: pointer;
     border: 0.25rem solid var.$text-color;
@@ -292,7 +320,7 @@ body {
   &::-moz-range-thumb {
     width: 1.5rem;
     height: 1.5rem;
-    background-color: var.$primary-color;
+    background-color: var(--hue-thumb-color, var.$primary-color);
     border-radius: 50%;
     cursor: pointer;
     border: 0.25rem solid var.$text-color;
@@ -313,14 +341,23 @@ body {
 }
 
 .color-opacity-slider {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0), var.$primary-color);
+  // Checkered background pattern for transparency
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      var.$primary-color
+    ),
+    linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%),
+    linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%);
+  background-size: 100% 100%, 8px 8px, 8px 8px;
+  background-position: 0 0, 0 0, 4px 4px;
 
   &::-webkit-slider-thumb {
-    background-color: var.$text-color !important;
+    background-color: var(--opacity-thumb-color, var.$text-color) !important;
   }
 
   &::-moz-range-thumb {
-    background-color: var.$text-color !important;
+    background-color: var(--opacity-thumb-color, var.$text-color) !important;
   }
 }
 
@@ -329,7 +366,7 @@ body {
   width: 100%;
   position: relative;
   display: grid;
-  grid-template-columns: 5.5rem 2fr 5.5rem;
+  grid-template-columns: 5.25rem 2fr 5.25rem;
   align-items: center;
   gap: 1rem;
 }
@@ -345,7 +382,7 @@ body {
   position: absolute;
   bottom: 100%;
   left: 0;
-  width: 25%;
+  width: 5.25rem;
   margin-top: 1rem;
   background-color: var.$secondary-color;
   border-radius: 0.5rem;
@@ -401,6 +438,7 @@ body {
   border-radius: 0.5rem;
   cursor: pointer;
   color: var.$text-color;
+  font-family: var.$primary-font;
   font-size: 1rem;
 
   img {
@@ -429,6 +467,7 @@ body {
     color: var.$text-color;
     font-family: var.$primary-font;
     font-size: 1rem;
+    text-transform: uppercase; // Capitalize letters for HEX input
 
     &::placeholder {
       color: rgba(var.$text-color, 0.5);
@@ -563,14 +602,86 @@ body {
   color: var.$inactive-color;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 1.5rem !important;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  padding: 0;
+  position: relative;
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+
+  // Create the + symbol with pseudo-elements
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: var.$inactive-color;
+    transition: background-color 0.15s ease;
+  }
+
+  &::before {
+    width: 0.75rem;
+    height: 2px;
+    border-radius: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &::after {
+    width: 2px;
+    height: 0.75rem;
+    border-radius: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   &:hover {
     border-color: var.$primary-color;
-    color: var.$primary-color;
+    transform: scale(1.1);
+
+    &::before,
+    &::after {
+      background-color: var.$primary-color;
+    }
   }
 }
+
+// Saved colors grid
+.saved-colors-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+.saved-colors-grid {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+
+  // Hide the grid container when empty so the add button aligns to the left
+  &:empty {
+    display: none;
+  }
+}
+
+.saved-color-swatch {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var.$secondary-color-2;
+  transition: transform 0.15s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    border-color: var.$primary-color;
+  }
+}
+
+// Think about when the saved colors overflow the popup - Make it scrollable
 
 // Specific styles for right toolbars
 .left-toolbar-2,
@@ -599,6 +710,7 @@ body {
   border-radius: 1rem;
   z-index: 1000;
   display: none; // Hidden by default
+  transition: opacity 0.15s ease-in-out;
 }
 
 // Default position for opacity popup
@@ -636,6 +748,12 @@ body {
       opacity: 1;
     }
   }
+}
+
+// Fade-out animation when closing
+.stroke-size-popup.closing,
+.opacity-popup.closing {
+  opacity: 0;
 }
 
 .stroke-size-display,

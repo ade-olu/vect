@@ -17,8 +17,20 @@ import { drawShape } from "./tools/shapes.js"; // For shape tools
 
 // Close style popups
 function closeStylePopups() {
-  if (strokeSizePopup) strokeSizePopup.classList.remove("visible");
-  if (opacityPopup) opacityPopup.classList.remove("visible");
+  if (strokeSizePopup) {
+    strokeSizePopup.classList.add("closing");
+    setTimeout(() => {
+      strokeSizePopup.classList.remove("visible");
+      strokeSizePopup.classList.remove("closing");
+    }, 150); // Match animation duration
+  }
+  if (opacityPopup) {
+    opacityPopup.classList.add("closing");
+    setTimeout(() => {
+      opacityPopup.classList.remove("visible");
+      opacityPopup.classList.remove("closing");
+    }, 150); // Match animation duration
+  }
   if (styleTools.strokeSize) styleTools.strokeSize.classList.remove("active");
   if (styleTools.opacity) styleTools.opacity.classList.remove("active");
 }
@@ -59,7 +71,11 @@ function startDrawing(e) {
   closeStylePopups(); // Close any open style popups
 
   if (isShapeTool(state.currentTool) && shapesPopup) {
-    shapesPopup.classList.remove("visible");
+    shapesPopup.classList.add("closing");
+    setTimeout(() => {
+      shapesPopup.classList.remove("visible");
+      shapesPopup.classList.remove("closing");
+    }, 150); // Match animation duration
   }
 
   state.isDrawing = true;
@@ -132,7 +148,11 @@ function startTouchDrawing(e) {
   const pos = getTouchPos(e);
 
   if (isShapeTool(state.currentTool) && shapesPopup) {
-    shapesPopup.classList.remove("visible");
+    shapesPopup.classList.add("closing");
+    setTimeout(() => {
+      shapesPopup.classList.remove("visible");
+      shapesPopup.classList.remove("closing");
+    }, 150); // Match animation duration
   }
 
   state.isDrawing = true;

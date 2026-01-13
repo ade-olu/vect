@@ -36,7 +36,19 @@ function setActiveToolButton(toolName) {
 // Show or hide the shapes popup
 function toggleShapesPopup(shouldShow) {
   if (!shapesPopup) return;
-  shapesPopup.classList.toggle("visible", shouldShow);
+
+  if (!shouldShow) {
+    // Add closing class for fade-out animation
+    shapesPopup.classList.add("closing");
+    setTimeout(() => {
+      shapesPopup.classList.remove("visible");
+      shapesPopup.classList.remove("closing");
+    }, 150); // Match animation duration
+  } else {
+    // Remove closing class if it exists, then show
+    shapesPopup.classList.remove("closing");
+    shapesPopup.classList.add("visible");
+  }
 }
 
 // Select a shape tool and update state/UI

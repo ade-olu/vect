@@ -19,18 +19,27 @@ export function openStrokeSizePopup() {
   // Close if stroke size popup is already open
   if (isStrokeOpen) {
     styleTools.strokeSize.classList.remove("active");
-    strokeSizePopup.classList.remove("visible");
+    strokeSizePopup.classList.add("closing");
+    setTimeout(() => {
+      strokeSizePopup.classList.remove("visible");
+      strokeSizePopup.classList.remove("closing");
+    }, 150); // Match animation duration
     return;
   }
 
   // Close opacity popup if stroke size popup is to be opened
   if (isOpacityOpen) {
-    opacityPopup.classList.remove("visible");
-    styleTools.opacity.classList.remove("active");
+    opacityPopup.classList.add("closing");
+    setTimeout(() => {
+      opacityPopup.classList.remove("visible");
+      opacityPopup.classList.remove("closing");
+      styleTools.opacity.classList.remove("active");
+    }, 150); // Match animation duration
   }
 
   // Otherwise, open stroke size popup
   styleTools.strokeSize.classList.add("active");
+  strokeSizePopup.classList.remove("closing");
   strokeSizePopup.classList.add("visible");
 }
 
@@ -44,18 +53,27 @@ export function openOpacityPopup() {
   // Close if opacity popup is already open
   if (isOpacityOpen) {
     styleTools.opacity.classList.remove("active");
-    opacityPopup.classList.remove("visible");
+    opacityPopup.classList.add("closing");
+    setTimeout(() => {
+      opacityPopup.classList.remove("visible");
+      opacityPopup.classList.remove("closing");
+    }, 150); // Match animation duration
     return;
   }
 
   // Close stroke size popup if opacity popup is to be opened
   if (isStrokeOpen) {
-    strokeSizePopup.classList.remove("visible");
-    styleTools.strokeSize.classList.remove("active");
+    strokeSizePopup.classList.add("closing");
+    setTimeout(() => {
+      strokeSizePopup.classList.remove("visible");
+      strokeSizePopup.classList.remove("closing");
+      styleTools.strokeSize.classList.remove("active");
+    }, 150); // Match animation duration
   }
 
   // Otherwise, open opacity popup
   styleTools.opacity.classList.add("active");
+  opacityPopup.classList.remove("closing");
   opacityPopup.classList.add("visible");
 }
 

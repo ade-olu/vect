@@ -137,6 +137,7 @@ body {
   border-radius: 1rem;
   z-index: 1000;
   display: none;
+  transition: opacity 0.15s ease-in-out;
 }
 
 .shapes-popup.visible {
@@ -150,6 +151,10 @@ body {
   to {
     opacity: 1;
   }
+}
+
+.shapes-popup.closing {
+  opacity: 0;
 }
 
 .line-icon {
@@ -205,11 +210,28 @@ body {
   padding: 1rem;
   box-sizing: border-box;
   border-radius: 1rem;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   gap: 1.5rem;
   z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.15s ease-in-out;
+}
+.color-picker-popup.visible {
+  display: flex;
+  animation: fadeIn 0.15s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.color-picker-popup.closing {
+  opacity: 0;
 }
 
 .color-picker-header {
@@ -271,7 +293,7 @@ body {
   appearance: none;
   width: 1.5rem;
   height: 1.5rem;
-  background-color: #7458ed;
+  background-color: var(--hue-thumb-color, #7458ed);
   border-radius: 50%;
   cursor: pointer;
   border: 0.25rem solid #ffffff;
@@ -280,7 +302,7 @@ body {
 .color-opacity-slider::-moz-range-thumb {
   width: 1.5rem;
   height: 1.5rem;
-  background-color: #7458ed;
+  background-color: var(--hue-thumb-color, #7458ed);
   border-radius: 50%;
   cursor: pointer;
   border: 0.25rem solid #ffffff;
@@ -291,20 +313,22 @@ body {
 }
 
 .color-opacity-slider {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0), #7458ed);
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), #7458ed), linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%), linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%);
+  background-size: 100% 100%, 8px 8px, 8px 8px;
+  background-position: 0 0, 0 0, 4px 4px;
 }
 .color-opacity-slider::-webkit-slider-thumb {
-  background-color: #ffffff !important;
+  background-color: var(--opacity-thumb-color, #ffffff) !important;
 }
 .color-opacity-slider::-moz-range-thumb {
-  background-color: #ffffff !important;
+  background-color: var(--opacity-thumb-color, #ffffff) !important;
 }
 
 .input-row {
   width: 100%;
   position: relative;
   display: grid;
-  grid-template-columns: 5.5rem 2fr 5.5rem;
+  grid-template-columns: 5.25rem 2fr 5.25rem;
   align-items: center;
   gap: 1rem;
 }
@@ -319,7 +343,7 @@ body {
   position: absolute;
   bottom: 100%;
   left: 0;
-  width: 25%;
+  width: 5.25rem;
   margin-top: 1rem;
   background-color: #16131d;
   border-radius: 0.5rem;
@@ -366,6 +390,7 @@ body {
   border-radius: 0.5rem;
   cursor: pointer;
   color: #ffffff;
+  font-family: "Aeonik", sans-serif;
   font-size: 1rem;
 }
 .color-format-toggle img {
@@ -392,6 +417,7 @@ body {
   color: #ffffff;
   font-family: "Aeonik", sans-serif;
   font-size: 1rem;
+  text-transform: uppercase;
 }
 .color-inputs input::-moz-placeholder {
   color: rgba(255, 255, 255, 0.5);
@@ -513,12 +539,71 @@ body {
   color: #868489;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 1.5rem !important;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  padding: 0;
+  position: relative;
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+.add-color::before, .add-color::after {
+  content: "";
+  position: absolute;
+  background-color: #868489;
+  transition: background-color 0.15s ease;
+}
+.add-color::before {
+  width: 0.75rem;
+  height: 2px;
+  border-radius: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.add-color::after {
+  width: 2px;
+  height: 0.75rem;
+  border-radius: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .add-color:hover {
   border-color: #7458ed;
-  color: #7458ed;
+  transform: scale(1.1);
+}
+.add-color:hover::before, .add-color:hover::after {
+  background-color: #7458ed;
+}
+
+.saved-colors-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+.saved-colors-grid {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+.saved-colors-grid:empty {
+  display: none;
+}
+
+.saved-color-swatch {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #1f1b2a;
+  transition: transform 0.15s ease;
+}
+.saved-color-swatch:hover {
+  transform: scale(1.1);
+  border-color: #7458ed;
 }
 
 .left-toolbar-2 .tool img,
@@ -544,6 +629,7 @@ body {
   border-radius: 1rem;
   z-index: 1000;
   display: none;
+  transition: opacity 0.15s ease-in-out;
 }
 
 .opacity-popup {
@@ -574,6 +660,11 @@ body {
   to {
     opacity: 1;
   }
+}
+
+.stroke-size-popup.closing,
+.opacity-popup.closing {
+  opacity: 0;
 }
 
 .stroke-size-display,

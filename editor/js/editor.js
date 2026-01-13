@@ -9,7 +9,7 @@ import {
   setupActionListeners,
   setupStyleToolListeners,
 } from "./tools.js";
-import { colorPickerDropdown } from "./color-picker.js";
+import { setupColorPicker } from "./color-picker.js";
 
 let currentDPR = window.devicePixelRatio; // Track current device pixel ratio
 
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupActionListeners(); // Attach action button listeners (undo, redo, clear, save)
   setupStyleToolListeners(); // Attach style tool listeners (color picker, stroke size, opacity)
   setupCanvasDrawing(); // Activate canvas drawing event listeners
-  colorPickerDropdown(); // Initialize color picker dropdown functionality
+  setupColorPicker(); // Initialize color picker functionality
 
   // Listen for window resize and orientation change events
   window.addEventListener("resize", handleCanvasResize);
