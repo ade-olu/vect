@@ -541,7 +541,7 @@ function renderSavedColors() {
       currentSaturation = s;
       currentLightness = l;
       updateColorFromHex(color);
-      positionCursorFromHSL(h, s, l); // ADD THIS LINE
+      positionCursorFromHSL(h, s, l);
     });
 
     savedColorsGrid.appendChild(colorSwatch);

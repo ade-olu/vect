@@ -31,6 +31,11 @@ body {
   margin: 0;
   padding: 0;
 }
+@media (max-width: 599px) {
+  body {
+    font-size: 1rem;
+  }
+}
 
 .navbar {
   background-color: #16131d;
@@ -39,10 +44,20 @@ body {
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 599px) {
+  .navbar {
+    padding: 2rem;
+  }
+}
 
 .logo img {
   width: 7rem;
   height: auto;
+}
+@media (max-width: 599px) {
+  .logo img {
+    width: 5.5rem;
+  }
 }
 
 .editor-container {
@@ -53,7 +68,12 @@ body {
   padding: 0 2.5rem;
   height: calc(100vh - 9.5rem);
   overflow: hidden;
-  gap: 4rem;
+  gap: 2.5rem;
+}
+@media (max-width: 599px) {
+  .editor-container {
+    display: none;
+  }
 }
 
 .toolbar {
@@ -745,4 +765,29 @@ body {
   height: calc(100vh - 2.5rem);
   background-color: #ffffff;
   display: block;
+}
+
+.mobile-notice {
+  display: none;
+  height: calc(100vh - 9.5rem);
+  font-family: "Aeonik", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 599px) {
+  .mobile-notice {
+    display: flex;
+  }
+}
+
+.mobile-notice-content {
+  max-width: 36rem;
+}
+.mobile-notice-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
 }

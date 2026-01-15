@@ -10,6 +10,12 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+  // Responsive adjustments
+  // For mobile devices
+  @include var.for-phone-only {
+    font-size: 1rem;
+  }
 }
 
 // Navbar
@@ -19,12 +25,24 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    padding: 2rem;
+  }
 }
 
 // Logo
 .logo img {
   width: 7rem;
   height: auto;
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    width: 5.5rem;
+  }
 }
 
 // Editor container
@@ -36,7 +54,13 @@ body {
   padding: 0 2.5rem;
   height: calc(100vh - 9.5rem);
   overflow: hidden;
-  gap: 4rem;
+  gap: 2.5rem;
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    display: none;
+  }
 }
 
 // Toolbar
@@ -840,4 +864,30 @@ body {
   height: calc(100vh - 2.5rem);
   background-color: var.$text-color;
   display: block;
+}
+
+// Mobile devices not supported message
+.mobile-notice {
+  display: none;
+  height: calc(100vh - 9.5rem);
+  font-family: var.$primary-font;
+  font-size: 1rem;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+
+  @include var.for-phone-only {
+    display: flex;
+  }
+}
+
+.mobile-notice-content {
+  max-width: 36rem;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
 }

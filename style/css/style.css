@@ -31,6 +31,11 @@ body {
   margin: 0;
   padding: 0;
 }
+@media (max-width: 599px) {
+  body {
+    font-size: 1rem;
+  }
+}
 
 .navbar {
   background-color: #16131d;
@@ -39,10 +44,20 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+@media (max-width: 599px) {
+  .navbar {
+    padding: 2rem;
+  }
+}
 
 .logo img {
   width: 7rem;
   height: auto;
+}
+@media (max-width: 599px) {
+  .logo img {
+    width: 5.5rem;
+  }
 }
 
 ul,
@@ -64,6 +79,21 @@ main {
   text-align: center;
   padding-top: 2.5rem;
   padding-bottom: 4.5rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  box-sizing: border-box;
+}
+@media (max-width: 599px) {
+  main {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+@media (min-width: 600px) {
+  main {
+    padding-bottom: 3.5rem;
+  }
 }
 
 .main-header-container {
@@ -75,6 +105,18 @@ main {
   line-height: 5rem;
   margin-top: 0rem;
   margin-bottom: 2.5rem;
+}
+@media (max-width: 599px) {
+  .main-header {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+}
+@media (min-width: 600px) {
+  .main-header {
+    font-size: 3.5rem;
+    line-height: 4.5rem;
+  }
 }
 
 .cursive-text {
@@ -106,6 +148,23 @@ main {
   max-width: 64rem;
   height: auto;
 }
+@media (max-width: 599px) {
+  .ipad-image {
+    display: none;
+  }
+}
+
+.ipad-image-2 {
+  display: none;
+}
+@media (max-width: 599px) {
+  .ipad-image-2 {
+    display: block;
+    width: 100%;
+    max-width: 32rem;
+    height: auto;
+  }
+}
 
 .footer {
   display: flex;
@@ -113,6 +172,15 @@ main {
   padding: 2.5rem;
   justify-content: space-between;
   align-items: center;
+}
+@media (max-width: 599px) {
+  .footer {
+    flex-wrap: wrap;
+    padding: 2rem;
+    justify-content: center;
+    gap: 2rem;
+    text-align: center;
+  }
 }
 
 .socials {
@@ -122,4 +190,9 @@ main {
 .socials a {
   color: #ffffff;
   text-decoration: none;
+}
+@media (max-width: 599px) {
+  .socials {
+    gap: 2rem;
+  }
 }

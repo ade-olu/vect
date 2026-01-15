@@ -10,6 +10,12 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+  // Responsive adjustments
+  // For mobile devices
+  @include var.for-phone-only {
+    font-size: 1rem;
+  }
 }
 
 // Navbar
@@ -19,12 +25,24 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    padding: 2rem;
+  }
 }
 
 // Logo
 .logo img {
   width: 7rem;
   height: auto;
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    width: 5.5rem;
+  }
 }
 
 // Nav links
@@ -48,6 +66,21 @@ main {
   text-align: center;
   padding-top: 2.5rem;
   padding-bottom: 4.5rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  box-sizing: border-box;
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+  }
+  // For tablet screens
+  @include var.for-tablet-portrait-up {
+    padding-bottom: 3.5rem;
+  }
 }
 
 // Header
@@ -61,6 +94,19 @@ main {
   line-height: 5rem;
   margin-top: 0rem;
   margin-bottom: 2.5rem;
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+
+  // For tablet screens
+  @include var.for-tablet-portrait-up {
+    font-size: 3.5rem;
+    line-height: 4.5rem;
+  }
 }
 
 .cursive-text {
@@ -94,6 +140,24 @@ main {
   width: 100%;
   max-width: 64rem;
   height: auto;
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    display: none;
+  }
+}
+
+// For phone screens
+.ipad-image-2 {
+  display: none;
+
+  @include var.for-phone-only {
+    display: block;
+    width: 100%;
+    max-width: 32rem;
+    height: auto;
+  }
 }
 
 // Footer
@@ -103,6 +167,16 @@ main {
   padding: 2.5rem;
   justify-content: space-between;
   align-items: center;
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    flex-wrap: wrap;
+    padding: 2rem;
+    justify-content: center;
+    gap: 2rem;
+    text-align: center;
+  }
 }
 
 // Socials
@@ -113,5 +187,11 @@ main {
   a {
     color: var.$text-color;
     text-decoration: none;
+  }
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    gap: 2rem;
   }
 }
