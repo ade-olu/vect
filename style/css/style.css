@@ -1,28 +1,37 @@
 @font-face {
   font-family: "Aeonik";
-  src: url("/assets/fonts/aeonik/aeonik-regular.woff2") format("woff2"), url("/assets/fonts/aeonik/aeonik-regular.woff") format("woff");
-  font-weight: 400;
+  src: url("../../assets/fonts/aeonik/aeonik-regular.woff2") format("woff2"), url("../../assets/fonts/aeonik/aeonik-regular.woff") format("woff");
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Aeonik";
-  src: url("/assets/fonts/aeonik/aeonik-bold.woff2") format("woff2"), url("/assets/fonts/aeonik/aeonik-bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../../assets/fonts/aeonik/aeonik-bold.woff2") format("woff2"), url("../../assets/fonts/aeonik/aeonik-bold.woff") format("woff");
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Segoe Print", cursive;
+  font-family: "Segoe Print";
   src: url("../../assets/fonts/segoe-print/segoe-print-regular.woff2") format("woff2"), url("../../assets/fonts/segoe-print/segoe-print-regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
-  font-family: "Segoe Print", cursive;
+  font-family: "Segoe Print";
   src: url("../../assets/fonts/segoe-print/segoe-print-bold.woff2") format("woff2"), url("../../assets/fonts/segoe-print/segoe-print-bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PF Reminder Pro";
+  src: url("../../assets/fonts/pf-reminder-pro/pf-reminder-pro-bold.woff2") format("woff2"), url("../../assets/fonts/pf-reminder-pro/pf-reminder-pro-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 body {
   font-family: "Aeonik", sans-serif;
@@ -140,7 +149,7 @@ main {
 }
 
 .cursive-text {
-  font-family: "Segoe Print", cursive;
+  font-family: "Segoe Print", "PF Reminder Pro" cursive !important;
   font-weight: bold;
   color: #7458ed;
 }

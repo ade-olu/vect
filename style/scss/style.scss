@@ -128,7 +128,7 @@ main {
 }
 
 .cursive-text {
-  font-family: var.$accent-font;
+  font-family: var.$accent-font !important;
   font-weight: bold;
   color: var.$primary-color;
 }

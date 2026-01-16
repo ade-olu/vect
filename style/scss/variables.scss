@@ -23,9 +23,7 @@
   src: url("../../assets/fonts/segoe-print/segoe-print-regular.woff2")
       format("woff2"),
     url("../../assets/fonts/segoe-print/segoe-print-regular.woff")
-      format("woff"),
-    url("../../assets/fonts/segoe-print/segoe-print-regular.ttf")
-      format("truetype");
+      format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -35,9 +33,19 @@
   font-family: "Segoe Print";
   src: url("../../assets/fonts/segoe-print/segoe-print-bold.woff2")
       format("woff2"),
-    url("../../assets/fonts/segoe-print/segoe-print-bold.woff") format("woff"),
-    url("../../assets/fonts/segoe-print/segoe-print-bold.ttf")
-      format("truetype");
+    url("../../assets/fonts/segoe-print/segoe-print-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Import PF Reminder Pro typeface
+@font-face {
+  font-family: "PF Reminder Pro";
+  src: url("../../assets/fonts/pf-reminder-pro/pf-reminder-pro-bold.woff2")
+      format("woff2"),
+    url("../../assets/fonts/pf-reminder-pro/pf-reminder-pro-bold.woff")
+      format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -53,7 +61,7 @@ $inactive-color: #868489;
 
 // Fonts
 $primary-font: "Aeonik", sans-serif;
-$accent-font: "Segoe Print";
+$accent-font: "Segoe Print", "PF Reminder Pro" cursive;
 
 // Mixins for media queries
 @mixin for-phone-only {
