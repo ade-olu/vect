@@ -23,7 +23,9 @@
   src: url("../../assets/fonts/segoe-print/segoe-print-regular.woff2")
       format("woff2"),
     url("../../assets/fonts/segoe-print/segoe-print-regular.woff")
-      format("woff");
+      format("woff"),
+    url("../../assets/fonts/segoe-print/segoe-print-regular.ttf")
+      format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -33,7 +35,9 @@
   font-family: "Segoe Print";
   src: url("../../assets/fonts/segoe-print/segoe-print-bold.woff2")
       format("woff2"),
-    url("../../assets/fonts/segoe-print/segoe-print-bold.woff") format("woff");
+    url("../../assets/fonts/segoe-print/segoe-print-bold.woff") format("woff"),
+    url("../../assets/fonts/segoe-print/segoe-print-bold.ttf")
+      format("truetype");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -49,7 +53,7 @@ $inactive-color: #868489;
 
 // Fonts
 $primary-font: "Aeonik", sans-serif;
-$accent-font: "Segoe Print", cursive;
+$accent-font: "Segoe Print";
 
 // Mixins for media queries
 @mixin for-phone-only {
