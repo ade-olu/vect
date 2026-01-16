@@ -28,8 +28,8 @@
 }
 @font-face {
   font-family: "PF Reminder Pro";
-  src: url("../../assets/fonts/pf-reminder-pro/pf-reminder-pro-bold.woff2") format("woff2"), url("../../assets/fonts/pf-reminder-pro/pf-reminder-pro-bold.woff") format("woff");
-  font-weight: bold;
+  src: url("../../assets/fonts/pf-reminder-pro/pf-reminder-pro-medium.woff2") format("woff2"), url("../../assets/fonts/pf-reminder-pro/pf-reminder-pro-medium.woff") format("woff");
+  font-weight: medium;
   font-style: normal;
   font-display: swap;
 }
@@ -149,7 +149,7 @@ main {
 }
 
 .cursive-text {
-  font-family: "Segoe Print", "PF Reminder Pro" cursive !important;
+  font-family: "Segoe Print", "PF Reminder Pro", cursive !important;
   font-weight: bold;
   color: #7458ed;
 }

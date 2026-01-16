@@ -42,11 +42,11 @@
 // Import PF Reminder Pro typeface
 @font-face {
   font-family: "PF Reminder Pro";
-  src: url("../../assets/fonts/pf-reminder-pro/pf-reminder-pro-bold.woff2")
+  src: url("../../assets/fonts/pf-reminder-pro/pf-reminder-pro-medium.woff2")
       format("woff2"),
-    url("../../assets/fonts/pf-reminder-pro/pf-reminder-pro-bold.woff")
+    url("../../assets/fonts/pf-reminder-pro/pf-reminder-pro-medium.woff")
       format("woff");
-  font-weight: bold;
+  font-weight: medium;
   font-style: normal;
   font-display: swap;
 }
@@ -61,7 +61,7 @@ $inactive-color: #868489;
 
 // Fonts
 $primary-font: "Aeonik", sans-serif;
-$accent-font: "Segoe Print", "PF Reminder Pro" cursive;
+$accent-font: "Segoe Print", "PF Reminder Pro", cursive;
 
 // Mixins for media queries
 @mixin for-phone-only {
