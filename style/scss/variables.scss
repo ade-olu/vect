@@ -69,7 +69,7 @@ $accent-font: "Segoe Print", cursive;
   }
 }
 @mixin for-big-desktop-up {
-  @media (min-width: 1800px) {
+  @media (min-width: 1400px) {
     @content;
   }
 }

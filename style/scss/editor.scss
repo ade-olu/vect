@@ -16,6 +16,11 @@ body {
   @include var.for-phone-only {
     font-size: 1rem;
   }
+
+  // For big desktop screens
+  @include var.for-big-desktop-up {
+    font-size: 1.25rem;
+  }
 }
 
 // Navbar
@@ -42,6 +47,12 @@ body {
   // For phone screens
   @include var.for-phone-only {
     width: 5.5rem;
+  }
+
+  // For big desktop screens
+  @include var.for-big-desktop-up {
+    width: auto;
+    height: 2rem;
   }
 }
 

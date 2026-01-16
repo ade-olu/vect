@@ -16,6 +16,11 @@ body {
   @include var.for-phone-only {
     font-size: 1rem;
   }
+
+  // For big desktop screens
+  @include var.for-big-desktop-up {
+    font-size: 1.25rem;
+  }
 }
 
 // Navbar
@@ -42,6 +47,12 @@ body {
   // For phone screens
   @include var.for-phone-only {
     width: 5.5rem;
+  }
+
+  // For big desktop screens
+  @include var.for-big-desktop-up {
+    width: auto;
+    height: 2rem;
   }
 }
 
@@ -100,12 +111,19 @@ main {
   @include var.for-phone-only {
     font-size: 2.5rem;
     line-height: 3rem;
+    margin-bottom: 2rem;
   }
 
   // For tablet screens
   @include var.for-tablet-portrait-up {
     font-size: 3.5rem;
     line-height: 4.5rem;
+  }
+
+  // For big desktop screens
+  @include var.for-big-desktop-up {
+    font-size: 4.5rem;
+    line-height: 5rem;
   }
 }
 
@@ -117,7 +135,13 @@ main {
 
 // Subtext
 .subtext {
-  margin-bottom: 2.5rem;
+  margin-bottom: 4rem;
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    margin-bottom: 3rem;
+  }
 }
 
 // Start Drawing button
@@ -134,6 +158,12 @@ main {
 // Image section
 .image-section {
   margin-top: 4rem;
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    margin-top: 3rem;
+  }
 }
 
 .ipad-image {
@@ -145,6 +175,11 @@ main {
   // For phone screens
   @include var.for-phone-only {
     display: none;
+  }
+
+  // For big desktop screens
+  @include var.for-big-desktop-up {
+    min-width: 64rem;
   }
 }
 

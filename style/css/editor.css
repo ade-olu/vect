@@ -36,6 +36,11 @@ body {
     font-size: 1rem;
   }
 }
+@media (min-width: 1400px) {
+  body {
+    font-size: 1.25rem;
+  }
+}
 
 .navbar {
   background-color: #16131d;
@@ -57,6 +62,12 @@ body {
 @media (max-width: 599px) {
   .logo img {
     width: 5.5rem;
+  }
+}
+@media (min-width: 1400px) {
+  .logo img {
+    width: auto;
+    height: 2rem;
   }
 }
 
