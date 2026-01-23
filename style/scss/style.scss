@@ -230,3 +230,39 @@ main {
     gap: 2rem;
   }
 }
+
+// About Page
+.about-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-bottom: 0;
+}
+
+.about-header {
+  margin-bottom: 0;
+}
+
+.about-subtext {
+  max-width: 48rem;
+
+  a {
+    color: var.$text-color;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var.$primary-color;
+    }
+  }
+}
+
+.about-footer {
+  margin-top: auto;
+}

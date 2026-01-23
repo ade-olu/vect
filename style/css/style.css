@@ -240,3 +240,36 @@ main {
     gap: 2rem;
   }
 }
+
+.about-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-bottom: 0;
+}
+
+.about-header {
+  margin-bottom: 0;
+}
+
+.about-subtext {
+  max-width: 48rem;
+}
+.about-subtext a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.about-subtext a:hover {
+  color: #7458ed;
+}
+
+.about-footer {
+  margin-top: auto;
+}
