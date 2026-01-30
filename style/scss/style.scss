@@ -136,11 +136,13 @@ main {
 // Subtext
 .subtext {
   margin-bottom: 4rem;
+  line-height: 2rem;
 
   // Responsive adjustments
   // For phone screens
   @include var.for-phone-only {
     margin-bottom: 3rem;
+    line-height: 1.5rem;
   }
 }
 
@@ -251,6 +253,7 @@ main {
 
 .about-subtext {
   max-width: 48rem;
+  line-height: 2rem;
 
   a {
     color: var.$text-color;
@@ -260,6 +263,12 @@ main {
     &:hover {
       color: var.$primary-color;
     }
+  }
+
+  // Responsive adjustments
+  // For phone screens
+  @include var.for-phone-only {
+    line-height: 1.5rem;
   }
 }
 
