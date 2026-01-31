@@ -139,7 +139,7 @@ body {
   padding: 0.75rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .tool img,
 .shapes-tool img {
@@ -147,9 +147,27 @@ body {
   height: 1rem;
   margin-left: -0.75rem;
 }
+.tool img,
+.tool div,
+.shapes-tool img,
+.shapes-tool div {
+  transition: transform 0.15s ease;
+}
 .tool:hover,
 .shapes-tool:hover {
   background-color: #7458ed;
+}
+.tool:hover img,
+.shapes-tool:hover img {
+  transform: scale(1.1);
+}
+.tool:hover div,
+.shapes-tool:hover div {
+  transform: scale(1.1);
+}
+.tool:active,
+.shapes-tool:active {
+  transform: scale(0.9);
 }
 
 .tool.active,
@@ -291,6 +309,10 @@ body {
   width: 1.5rem;
   height: 1.5rem;
   cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.color-picker-header img:active {
+  transform: scale(0.9);
 }
 
 .color-selection-area {
@@ -614,6 +636,9 @@ body {
 .add-color:hover::before, .add-color:hover::after {
   background-color: #7458ed;
 }
+.add-color:active {
+  transform: scale(0.9);
+}
 
 .saved-colors-container {
   display: flex;
@@ -646,6 +671,9 @@ body {
 .saved-color-swatch:hover {
   transform: scale(1.1);
   border-color: #7458ed;
+}
+.saved-color-swatch:active {
+  transform: scale(0.9);
 }
 
 .left-toolbar-2 .tool img,

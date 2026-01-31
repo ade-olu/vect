@@ -173,6 +173,13 @@ main {
   text-decoration: none;
   border-radius: 50rem;
   font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+.start-drawing-btn:hover {
+  background-color: rgb(103.7905405405, 73.3310810811, 235.4189189189);
+}
+.start-drawing-btn:active {
+  transform: scale(0.9);
 }
 
 .image-section {

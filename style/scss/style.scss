@@ -1,5 +1,5 @@
-// Import variables from variables.scss
-@use "variables" as var;
+@use "variables" as var; // Import variables from variables.scss
+@use "sass:color";
 
 // Body
 body {
@@ -155,6 +155,17 @@ main {
   text-decoration: none;
   border-radius: 50rem;
   font-weight: bold;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
+
+  &:hover {
+    background-color: color.scale(var.$primary-color, $lightness: -5%);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
 }
 
 // Image section
